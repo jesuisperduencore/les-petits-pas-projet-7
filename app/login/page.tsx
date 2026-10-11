@@ -1,2 +1,2 @@
-import Link from 'next/link';
-export default function Login(){return <main className="container"><div className="login card"><div className="brand">Les Petits Pas</div><h1 style={{marginTop:24}}>Connexion</h1><p className="muted">Accédez à votre espace sécurisé.</p><label className="label">Email</label><input className="input" type="email" defaultValue="demo@lespetitspas.fr"/><label className="label">Mot de passe</label><input className="input" type="password" defaultValue="demonstration"/><p className="footer-note">Démo locale : choisissez l’espace à ouvrir.</p><div style={{display:'flex',gap:10,marginTop:18}}><Link className="btn primary" href="/staff">Espace équipe</Link><Link className="btn secondary" href="/parent">Espace parent</Link></div></div></main>}
+import {LoginForm} from '@/components/LoginForm';
+export default function Login(){return <main className="container"><LoginForm/></main>}

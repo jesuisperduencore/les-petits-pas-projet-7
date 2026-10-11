@@ -19,7 +19,7 @@ create trigger medication_guard before insert or update on public.events for eac
 alter table public.profiles enable row level security;alter table public.sections enable row level security;alter table public.children enable row level security;alter table public.family_members enable row level security;alter table public.events enable row level security;alter table public.messages enable row level security;
 grant usage on schema public to authenticated;grant select,insert,update on all tables in schema public to authenticated;
 
-create function public.is_staff() returns boolean language sql stable security invoker set search_path='' as $$ select exists(select 1 from public.profiles p where p.id=(select auth.uid()) and p.role='staff'); $$;
+create function public.is_staff() returns boolean language sql stable security invoker set search_path='' as $$ select coalesce((auth.jwt()->'app_metadata'->>'role')='staff',false); $$;
 create policy profiles_self_or_staff on public.profiles for select to authenticated using(id=(select auth.uid()) or public.is_staff());
 create policy sections_authenticated on public.sections for select to authenticated using(true);
 create policy children_staff_all on public.children for all to authenticated using(public.is_staff()) with check(public.is_staff());
