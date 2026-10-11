@@ -1,6 +1,6 @@
 import {notFound} from 'next/navigation';
 import {Header} from '@/components/Header';
-import {Timeline,type TimelineEvent} from '@/components/Timeline';
+import {Timeline,TimelineSummary,type TimelineEvent} from '@/components/Timeline';
 import {children as demoChildren,events as demoEvents} from '@/lib/demo';
 import {createClient} from '@/lib/supabase/server';
 
@@ -22,5 +22,5 @@ export default async function Child({params,searchParams}:{params:Promise<{id:st
     const found=demoChildren.find(item=>item.id===id);if(!found)notFound();child=found;
     if(id==='1'&&date==='2026-10-11')timeline=demoEvents.map((event,index)=>({id:`demo-${index}`,childId:'1',type:{Repas:'meal',Sieste:'nap',Activité:'activity',Médicament:'medication',Incident:'incident'}[event.type]??'activity',occurredAt:`2026-10-11T${event.time}:00`,description:event.detail,author:event.author}));
   }
-  return <div><Header/><main className="container"><div className="child"><div className="avatar">{child.emoji}</div><div><span className="badge">{child.section}</span><h1>{child.firstName} {child.lastName}</h1><p className="muted">{child.age} • Autorisation médicament : {child.authorized?'confirmée':'non confirmée'}</p></div></div><form className="filters" method="get"><label>Date <input className="input" name="date" type="date" defaultValue={date}/></label><button className="btn secondary">Afficher</button></form><div className="split"><section className="card"><h2>Timeline du jour</h2><Timeline events={timeline} childId={id} date={date}/></section><aside><div className="card"><h3>Informations utiles</h3><p>Section : {child.section}</p><p>Date de naissance : {child.age}</p><p>Médicament : {child.authorized?'autorisé':'autorisation absente'}</p></div><div className="card" style={{marginTop:18}}><h3>Résumé</h3><p><span className="stat">{timeline.length}</span> événements enregistrés</p></div></aside></div></main></div>;
+  return <div><Header/><main className="container"><div className="child"><div className="avatar">{child.emoji}</div><div><span className="badge">{child.section}</span><h1>{child.firstName} {child.lastName}</h1><p className="muted">{child.age} • Autorisation médicament : {child.authorized?'confirmée':'non confirmée'}</p></div></div><form className="filters" method="get"><label>Date <input className="input" name="date" type="date" defaultValue={date}/></label><button className="btn secondary">Afficher</button></form><div className="split"><section className="card"><h2>Timeline du jour</h2><Timeline events={timeline} childId={id} date={date}/></section><aside><div className="card"><h3>Informations utiles</h3><p>Section : {child.section}</p><p>Date de naissance : {child.age}</p><p>Médicament : {child.authorized?'autorisé':'autorisation absente'}</p></div><div className="card" style={{marginTop:18}}><h3>Résumé</h3><TimelineSummary count={timeline.length} childId={id} date={date}/></div></aside></div></main></div>;
 }
