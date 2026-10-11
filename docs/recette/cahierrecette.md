@@ -12,6 +12,9 @@
 | REC-08 | Message trop long | Parent rattaché | Envoyer 501 caractères | Refus clair | Conforme par validation |
 | REC-09 | Bonus météo | API accessible | Ouvrir la vue parent | Température et conseil affichés | Conforme en maquette |
 | REC-10 | Responsive | Téléphone/tablette | Parcourir tous les écrans | Aucun débordement ni action masquée | Conforme visuellement |
+| REC-11 | Persistance événement | Mode démo équipe | Créer un repas, vérifier la timeline, actualiser | L'événement reste visible après redirection et actualisation | Conforme en production le 12/10/2026 |
+| REC-12 | Partage équipe-parent | Événement de démonstration existant | Ouvrir la vue parent sur la même date | Le parent voit le nouvel événement | Conforme en production le 12/10/2026 |
+| REC-13 | Résumé de timeline | Deux événements sur la date | Consulter la fiche enfant | Le résumé affiche 2 événements | Conforme en production le 12/10/2026 |
 
 ## Comptes et données de recette
 
