@@ -2,6 +2,8 @@
 
 Application déployée : https://lespetitspas-gamma.vercel.app
 
+Dépôt GitHub : https://github.com/jesuisperduencore/les-petits-pas-projet-7
+
 Le dépôt contient l'application Next.js, la migration Supabase avec RLS, les données de démonstration, les tests Playwright et les documents de recette. Le mode démonstration permet de présenter tous les écrans sans exposer de données réelles.
 
 Application Next.js pour centraliser les transmissions quotidiennes d'une crèche associative.
